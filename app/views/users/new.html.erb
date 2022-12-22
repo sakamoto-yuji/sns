@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "users" %>
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">アカウントを作成</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="form-error">
+          <%= message %>
+        </div>
+      <% end %>
+      <%= form_tag("/users/create",{multipart: true}) do %>
+        <p>アカウント名</p>
+        <input name="name" value="<%= @user.name %>">
+        <p>プロフィール画像</p>
+        <input name="image"type="file">
+        <p>プロフィール画像</p>
+        <p>メールアドレス</p>
+        <input name="email" value="<%= @user.email %>">
+        <input type="submit" value="新規作成">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

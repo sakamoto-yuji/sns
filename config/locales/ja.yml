@@ -1,0 +1,38 @@
+ja:
+  time:
+    formats:
+      default: "%H:%M・%Y/%m/%d・ "    
+  posts:
+    show:
+      edit: "編集"
+      destroy: "削除"
+    edit:
+      title: "編集する"
+      save: "保存"
+  activerecord:
+    errors:
+      models:
+        user:
+         attributes:
+           email:
+             blank: "を入力してください"
+             taken: "が既に使用されています"
+           name:
+             blank: "を入力してください"
+        post:
+          attributes:
+            content:
+              blank: "ツイートを入力してください"
+              too_long: "ツイートは140文字以内にしてください"
+    models:
+      post: "投稿"
+    attributes:
+      user:
+        name: "アカウント名"
+        email: "メールアドレス"
+      post:
+        content: "ツイート"
+
+  
+   
+    

@@ -1,0 +1,9 @@
+<% if model.errors.any? %>
+ <div class="error_alert">
+     <% @post.errors[:content].each do |messages| %>
+         <div class="form-error">
+             <%= messages %>
+         </div>  
+     <% end %>
+ </div>
+<% end %>

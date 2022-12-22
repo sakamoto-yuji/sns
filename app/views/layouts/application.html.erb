@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>twitterっぽいもの</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
+  </head>
+
+  <body>
+  <header>
+      <div class="header-logo">
+       <%= link_to("twitterっぽいもの","/top") %>
+      </div>
+      <ul class="header-menus">
+        <li>
+         <%= link_to("twitterっぽいものとは","/about") %>
+        </li>
+        <li>
+         <%= link_to("タイムライン","/posts/index") %>
+        </li>
+        <li>
+         <%=link_to("ツイートする","/posts/new") %>
+        </li>
+        <li>
+         <%= link_to("アカウント一覧","/users/index") %>
+        </li>
+        <li>
+        <%= link_to("新しいアカウントを作成","/signup") %>
+        </li>
+      </ul>
+    </header>
+    
+    <% if flash[:notice] %>
+     <div class="flash">
+       <%= flash[:notice] %>
+     </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
