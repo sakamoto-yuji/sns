@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       File.binwrite("public/user_images/#{@user.image_name}",image.read)
     end
      if @user.save
+       File.rename("public/user_images/#{@user.image_name}","public/user_images/#{@user.id}.jpg")
       flash[:notice] = "アカウントを作成しました"
       redirect_to("/users/#{@user.id}")
      else
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
   @user.name = params[:name]
   @user.email = params[:email]
   if image = params[:image]
-  @user.image_name = "#{@user.name}.jpg"
+  @user.image_name = "#{@user.id}.jpg"
     File.binwrite("public/user_images/#{@user.image_name}",image.read)
   end
   if @user.save
@@ -51,8 +52,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    if File.exist?("public/user_images/#{@user.name}.jpg")
-    File.delete("public/user_images/#{@user.name}.jpg")
+    if File.exist?("public/user_images/#{@user.image_name}")
+    File.delete("public/user_images/#{@user.image_name}")
     end
     @user.destroy
     flash[:notice] = "アカウントを削除しました"
