@@ -15,7 +15,8 @@ class UsersController < ApplicationController
     @user = User.new(
       name: params[:name],
       email: params[:email],
-      image_name: params[:image]
+      image_name: params[:image],
+      password: params[:password]
       ) 
     if @user.save
 
@@ -68,5 +69,19 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = "アカウントを削除しました"
     redirect_to("/users/index")
+  end
+
+  def login_form
+  end
+
+  def login
+    @user = User.find_by(email: params[:email],
+                         password: params[:password])
+    if @user
+      flash[:notice] = "ログインしました"
+      redirect_to("/posts/index")
+    else
+      render("users/login_form")
+    end
   end
 end
