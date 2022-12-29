@@ -36,4 +36,5 @@ ee https://help.github.com/articles/ignoring-files for more about ignoring files
 
 public/
 .DS_Store
-.swp
+*.swp
+app/.DS_Store
