@@ -8,8 +8,10 @@
       <div class="user-time">
        <%= l @user.created_at %>
      </div>
+     <% if @user.id == @current_user.id %>
       <%= link_to("編集","/users/#{@user.id}/edit") %>
       <%= link_to("削除","/users/#{@user.id}/destroy",{method:"delete"}) %>
+    <% end %>
     </div>
   </div>
 </div>
