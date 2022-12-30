@@ -1,14 +1,21 @@
 <%= stylesheet_link_tag "users" %>
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">ログイン</div>
+    <div class="form-heading">ログイン </div>
+      または<%= link_to("新しいアカウントを作成","/signup") %>してください
     <div class="form users-form">
       <div class="form-body">
+        <% if @wrong_email || @wrong_password %>
+          <div class="form-error">
+            <%= @wrong_email %> <br>
+            <%= @wrong_password %>
+          </div>
+        <% end %>
         <%= form_tag("/login") do %>
         <p>メールアドレス</p>
-        <input name="email">
+        <input name="email" value="<%= @email %>">
         <p>パスワード</p>
-        <input type="password" name="password">
+        <input type="password" name="password" value="<%= @password %>">
         <input type="submit" value="ログイン">
       <% end %>
       </div>
