@@ -1,4 +1,9 @@
 /* reset ================================ */
+
+:root {
+  --main-color: #55acee;
+  }
+
 * {
   box-sizing: border-box;
 }
@@ -42,7 +47,7 @@ span {
 /* 共通レイアウト ================================ */
 body {
   color: #2d3133;
-  background-color: #3064cd;
+  background-color: var(--main-color);
   margin: 0;
   height: 100%;
   min-height: 120vh;
@@ -68,8 +73,10 @@ body {
 /* ヘッダー ================================ */
 header {
   height: 64px;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  top: 0;
+  background-color: var(--main-color);
+  z-index: 10;
   width: 100%;
 }
 
@@ -167,7 +174,7 @@ header {
 }
 
 .form input[type="submit"] {
-  background-color: #3064cd;
+  background-color: var(--main-color);
   color: white;
   cursor: pointer;
   font-weight: 300;
@@ -176,7 +183,12 @@ header {
   margin-top: 8px;
   margin-bottom: 0;
   float: right;
+  opacity: 0.8;
 }
+
+.form input[type="submit"]:hover {
+  opacity: 1;
+  }
 
 .form-body:after {
   content: '';
