@@ -125,4 +125,9 @@
 /* users/new, users/edit ================================ */
 .users-form input {
   margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.users-form input:hover {
+  opacity: 1;
 }
