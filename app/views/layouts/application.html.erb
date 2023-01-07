@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <% @main_title = "Molding.com" %>
   <head>
-    <title>twitterっぽいもの</title>
+    <title><%= @main_title %></title>
+    <%= favicon_link_tag("favicon.ico") %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,9 +14,9 @@
   <header>
       <div class="header-logo">
         <% if @current_user %>
-       <%= link_to("twitterっぽいもの","/posts/index") %>
+          <%= link_to("#{@main_title}","/posts/index") %>
      <% else %>
-       <%= link_to("twitterっぽいもの","/top") %>
+       <%= link_to("#{@main_title}","/top") %>
      <% end %>
       </div>
       <ul class="header-menus">
@@ -61,9 +63,9 @@
     <footer>
    <div class="footer-logo">
         <% if @current_user %>
-       <%= link_to("twitterっぽいもの","/posts/index") %>
+          <%= link_to("#{@main_title}","/posts/index") %>
      <% else %>
-       <%= link_to("twitterっぽいもの","/top") %>
+       <%= link_to("#{@main_title}","/top") %>
      <% end %>
       </div>
       <ul class="footer-menus">
