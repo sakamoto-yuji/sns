@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <% @main_title = "Molding.com" %>
+  <%
+   @main_title = "射出成形.com"
+   @about = "射出成形.comの使い方" 
+   @posts_index = "投稿一覧" 
+   @posts_new = "投稿する"
+ %>
   <head>
     <title><%= @main_title %></title>
     <%= favicon_link_tag("favicon.ico") %>
@@ -16,7 +21,7 @@
         <% if @current_user %>
           <%= link_to("#{@main_title}","/posts/index") %>
      <% else %>
-       <%= link_to("#{@main_title}","/top") %>
+       <%= link_to("#{@main_title}","/") %>
      <% end %>
       </div>
       <ul class="header-menus">
@@ -25,10 +30,10 @@
             <%= link_to(@current_user.name,"/users/#{@current_user.id}") %>
           </li>
         <li>
-         <%= link_to("タイムライン","/posts/index") %>
+          <%= link_to("#{@posts_index}","/posts/index") %>
         </li>
         <li>
-         <%=link_to("ツイートする","/posts/new") %>
+          <%=link_to("#{@posts_new}","/posts/new") %>
         </li>
         <li>
          <%= link_to("アカウント一覧","/users/index") %>
@@ -38,7 +43,7 @@
         </li>
       <% else %>
         <li>
-         <%= link_to("twitterっぽいものとは","/about") %>
+          <%= link_to("#{@about}","/about") %>
         </li>
         <li>
         <%= link_to("新しいアカウントを作成","/signup") %>
@@ -65,7 +70,7 @@
         <% if @current_user %>
           <%= link_to("#{@main_title}","/posts/index") %>
      <% else %>
-       <%= link_to("#{@main_title}","/top") %>
+       <%= link_to("#{@main_title}","/") %>
      <% end %>
       </div>
       <ul class="footer-menus">
@@ -74,10 +79,10 @@
             <%= link_to(@current_user.name,"/users/#{@current_user.id}") %>
           </li>
         <li>
-         <%= link_to("タイムライン","/posts/index") %>
+          <%= link_to("#{@posts_index}","/posts/index") %>
         </li>
         <li>
-         <%=link_to("ツイートする","/posts/new") %>
+          <%=link_to("#{@posts_new}","/posts/new") %>
         </li>
         <li>
          <%= link_to("アカウント一覧","/users/index") %>
@@ -87,7 +92,7 @@
         </li>
       <% else %>
         <li>
-         <%= link_to("twitterっぽいものとは","/about") %>
+          <%= link_to("#{@about}","/about") %>
         </li>
         <li>
         <%= link_to("新しいアカウントを作成","/signup") %>
