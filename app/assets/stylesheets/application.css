@@ -47,7 +47,7 @@ span {
 /* 共通レイアウト ================================ */
 body {
   color: #2d3133;
-  background-color: var(--main-color);
+  background-color: white;
   margin: 0;
   height: 100%;
   min-height: 120vh;

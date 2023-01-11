@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "posts/new" =>"posts#new"
   get "posts/:id" =>"posts#show"
   post "posts/create" =>"posts#create"
-  get "top" =>"home#top"
+  get "/" =>"home#top"
   get "about" =>"home#about"
   get "posts/:id/edit" => "posts#edit"
   post "posts/:id/update" => "posts#update"

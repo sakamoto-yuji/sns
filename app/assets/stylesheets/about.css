@@ -1,21 +1,27 @@
 /* about ================================ */
 .about-main {
-    padding: 80px 390px;
     color: black;
+    top: 64px;
+    width: 100%;
+    height: auto;
+    padding: 50px 50px;
+    position: relative;
+    text-align: center;
   }
   
   .about-main h2 {
     font-size: 50px;
     font-weight: 500;
     line-height: 1.4;
+    text-align: center;
   }
   
   .about-main p {
     font-weight: 200;
-    font-size: 20px;
+    font-size: 30px;
   }
   
   .about-img {
-    width: 700px;
+    width: 800px;
     height: 500px;
   }

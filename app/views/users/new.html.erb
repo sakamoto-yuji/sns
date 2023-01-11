@@ -2,6 +2,9 @@
 <div class="main users-new">
   <div class="container">
     <div class="form-heading">アカウントを作成</div>
+    <div class="form-heading-link">
+      または<%= link_to("ログイン","/login") %>してください
+    </div>
     <div class="form users-form">
       <div class="form-body">
       <% @user.errors.full_messages.each do |message| %>
