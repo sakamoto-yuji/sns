@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag "users" %>
 <div class="main users-index">
-  <div class="container">
+  <div class="users-index-container">
     <h1 class="users-heading">アカウント一覧</h1>
     <% @users.each do |user| %>
       <%= link_to("/users/#{user.id}") do %>

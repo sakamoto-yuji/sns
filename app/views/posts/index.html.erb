@@ -1,15 +1,8 @@
-<%= stylesheet_link_tag "posts" %>
 <div class="main posts-index">
-  <div class="container">
+  <div class="post-index-container">
+    <h1 class="form-heading">投稿一覧</h1>
     <% @posts.each do |post| %>
-      <%= link_to("/posts/#{post.id}") do %>
-      <div class="posts-index-item">
-        <%= post.content %>
-        <div class="post-time">
-         <%= l post.updated_at %>
-       </div>
-      </div>
-    <% end %>
+      <%= render "shared/post", post: post %>
     <% end %>
   </div>
 </div>

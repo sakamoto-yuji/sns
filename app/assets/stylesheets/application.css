@@ -1,5 +1,15 @@
 /* reset ================================ */
 
+/*
+ * This is a manifest file that'll automatically include all the stylesheets
+ * available in this directory and any sub-directories. You're free to add
+ * application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style
+ * scope.
+ *= require_self
+ *= require_tree .
+*/
+
 :root {
   --main-color: #55acee;
   }
@@ -49,25 +59,22 @@ body {
   color: #2d3133;
   background-color: white;
   margin: 0;
-  height: 100%;
+  height: auto;
   min-height: 120vh;
+  position: relative;
 }
 
 .main {
   position: absolute;
-  top: 64px;
   width: 100%;
   height: auto;
   min-height: 120vh;
-  background-color: #f5f8fa;
+  left: 0;
+  top: 64px;
 }
 
-.container {
-  max-width: 600px;
-  margin: 60px auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  clear: both;
+.content {
+	min-height: 700px;
 }
 
 /* ヘッダー ================================ */
@@ -109,7 +116,7 @@ header {
 
 .header-menus a {
   float: left;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
 }
 
@@ -222,13 +229,19 @@ header {
 /* フッター ================================ */
 footer {
   height: 200px;
-  position: absolute ;
-  bottom: 0px;
+  position: absolute ; 
+/*  bottom: 0px; */
   width: 100%;
   background-color: #2f5167;
   color: #fff;
-  top: 780px;
+  top: 0px; 
 }
+
+.footer-space {
+  width: 100%;
+  height: auto;
+  position: relative;
+  }
 
 .footer-logo {
   float: left;
@@ -258,7 +271,7 @@ footer {
 
 .footer-menus a {
   float: left;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
 }
 

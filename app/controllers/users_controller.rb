@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
-      redirect_to("/posts/index")
+      redirect_to(posts_path)
     end
   end
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       flash[:notice] = "アカウントを作成しました"
       redirect_to("/users/#{@user.id}")
      else
-      render("users/new")
+      render(new_user_path)
      end
   end
 
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     flash[:notice] = "アカウント情報を編集しました"
     redirect_to("/users/#{@user.id}")
   else
-    render("users/edit")
+    render(edit_user_path)
   end
   end
 
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     end
     @user.destroy
     flash[:notice] = "アカウントを削除しました"
-    redirect_to("/users/index")
+    redirect_to(users_path)
   end
 
   def login_form
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     if @user
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/posts/index")
+      redirect_to(posts_path)
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
 

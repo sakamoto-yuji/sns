@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag "users" %>
 <div class="main users-new">
-  <div class="container">
+  <div class="user-new-container">
     <div class="form-heading">アカウントを作成</div>
     <div class="form-heading-link">
       または<%= link_to("ログイン","/login") %>してください
@@ -12,7 +11,7 @@
           <%= message %>
         </div>
       <% end %>
-      <%= form_tag("/users/create",{multipart: true}) do %>
+      <%= form_tag(users_path,{multipart: true}, ) do %>
         <p>アカウント名</p>
         <input name="name" value="<%= @user.name %>">
         <p>プロフィール画像</p>

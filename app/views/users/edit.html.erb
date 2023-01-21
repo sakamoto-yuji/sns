@@ -1,8 +1,7 @@
-<%= stylesheet_link_tag "users" %>
 <div class="main users-edit">
- <div class="container">
+ <div class="user-edit-container">
      <div class="form-heading">アカウント情報の編集</div>
-     <%= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
+     <%= form_with(url: user_path(id: @user.id), method: "patch",  multipart: true ) do %>
              <div class="form users-form">
              <div class="form-body">
              <% @user.errors.full_messages.each do |messages| %>
