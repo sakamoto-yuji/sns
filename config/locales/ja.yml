@@ -25,8 +25,8 @@ ja:
         post:
           attributes:
             content:
-              blank: "ツイートを入力してください"
-              too_long: "ツイートは140文字以内にしてください"
+              blank: "投稿を入力してください"
+              too_long: "投稿は140文字以内にしてください"
     models:
       post: "投稿"
     attributes:
@@ -35,7 +35,7 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
       post:
-        content: "ツイート"
+        content: "投稿"
 
   
    

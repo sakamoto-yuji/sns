@@ -1,21 +1,66 @@
 /* posts/index ================================ */
-.posts-index-item {
-  padding: 20px 30px;
+
+.main.posts-index {
+    text-align: -webkit-center;
+    left: 0;
+}
+
+.post-index-container {
+  margin-top:50px;
+  }
+
+.posts-item {
+  padding: 20px 9px 29px;
   background-color: white;
   overflow: hidden;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
-          box-shadow: 0 2px 6px #c1ced7;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: 408px;
+  position: relative;
+  height: max-content;
+  min-height: 174px;
+
+	  
+}
+
+.post-btn-space {
+    position: relative;
+    bottom: -47px;
+    width: inherit;
+    height: 30px;
+    display: flex;
+    left: -10px;
+}
+
+.post-user-link {
+    padding-bottom: 19px;
+    width: fit-content;
+    left: -111px;
+    top: -7px;
+    position: relative;
+}
+
+.post-user-link a {
+    padding: 0 0;
+    position: relative;
+    width: 145px;
+}
+
+.post-user-name {
+    position: absolute;
+    top: 7px;
+    left: -16px;
+    width: max-content;
 }
 
 .posts-index-item a {
   display: inline-block;
-  padding: 20px 30px;
   }
 
 .post-left img {
   width: 50px;
   height: 50px;
-  border-radius: 40%;
+  border-radius: 50%;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
           box-shadow: 0 2px 6px #c1ced7;
   -o-object-fit: cover;
@@ -33,32 +78,50 @@
 .post-left {
   float: left;
   width: 10%;
+  position: absolute;
+    left: -81px;
+    top: -5px;
 }
 
 .post-right {
   float: left;
-  width: 90%;
-  padding-left: 25px;
+  width: fit-content;
   text-align: left;
+  position: relative;
+  top: 9px;
+  left: 67px;
+  inline-size: 313px;
+  overflow-wrap: break-word;
 }
 
 /* posts/show ================================ */
+
+.main.posts-show {
+  text-align: -webkit-center;
+  top: 64px;
+}
+ 
+.post-show-container {
+  margin-top: 50px;
+}
+
 .posts-show form {
   display: inline;
 }
 
 .posts-show-item {
-  padding: 30px;
+  padding: 20px 30px;
   background-color: white;
-  -webkit-box-shadow: 0 2px 6px #c1ced7;
-          box-shadow: 0 2px 6px #c1ced7;
   overflow: hidden;
+  -webkit-box-shadow: 0 2px 6px #c1ced7;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: 408px;
 }
 
 .posts-show-item img {
   width: 60px;
   height: 60px;
-  border-radius: 40%;
+  border-radius: 50%;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
           box-shadow: 0 2px 6px #c1ced7;
   vertical-align: middle;
@@ -78,12 +141,40 @@
 }
 
 .post-time {
+  left: 4px;
   color: #8899a6;
   margin-bottom: 10px;
+  width: max-content;
+  margin: 0;
+  display: inherit;
+  position: absolute;
+  bottom: 2px;
+}
+
+.post-menu {
+  width: fit-content;
+  margin-top: 15px
+  }
+
+.post-menu a:hover {
+  color: black;
+}  
+
+.btn-outline-info {
+  border: 2px solid var(--main-color);
+  color: black;
+}
+
+.btn-outline-info:hover {
+  background: var(--main-color);
+  opacity: 0.8;
 }
 
 .post-menus {
   float: right;
+  position: absolute;
+  right: 12px;
+  top: 9px;		 
 }
 
 .post-menus a, .post-menus input {
@@ -94,6 +185,11 @@
 }
 
 /* posts/new ================================ */
+
+.main.posts-new {
+    text-align: -webkit-center;
+}
+
 .posts-new textarea {
   font-size: 20px;
   padding: 10px;
@@ -105,4 +201,20 @@
 .posts-new textarea::-webkit-input-placeholder {
   font-size: 24px;
   opacity: 0.5;
+}
+
+/* いいねボタン */
+
+.unliked-btn {
+  color: #8899a6;
+}
+
+.liked-btn {
+  color: #ff2581;
+}
+
+.likes-count {
+  position: absolute;
+  bottom: 5px;
+  right: 121px;
 }

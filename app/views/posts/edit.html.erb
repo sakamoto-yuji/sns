@@ -1,9 +1,8 @@
-<%= stylesheet_link_tag "posts" %>
 <div class="main posts-new">
-  <div class="container">
+  <div class="post-edit-container">
     <h1 class="form-heading"><%= t('.title') %></h1>
   </div>
-  <%= form_tag("/posts/#{@post.id}/update") do %>
+  <%= form_with(url: post_path(id: @post.id), method: :patch) do %>
    <div class="form">
       <div class="form-body">
        <% @post.errors[:content].each do |messages| %>

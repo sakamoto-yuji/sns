@@ -1,17 +1,22 @@
-<%= stylesheet_link_tag "posts" %>
 <div class="main posts-show">
-  <div class="container">
-    <div class="posts-show-item">
-    <p>
-   <%= @post.content %> 
-    </p>
-    <div class="post-time">
-     <%= l @post.updated_at %>
+  <div class="post-show-container">
+    <div class="form-heading">投稿詳細</div>
+    <%= render "shared/post", post: @post %>
+    <!--post-menu-->
+    <div class="post-menu"> 
+    <% if @post.user.id == @current_user.id %>
+      <%= link_to(edit_post_path(id: @post.id)) do %>
+      <button type="button" class="btn btn-outline-info">
+        編集
+      </button>
+    <% end %>
+    <%= link_to(post_path(id: @post.id), method: :delete) do %>
+      <button type="button" class="btn btn-outline-info">
+        削除
+      </button>
+    <% end %>
     </div>
-    <div class="post-menus">
-        <%= link_to(t('.edit'), "/posts/#{@post.id}/edit") %>
-        <%= link_to(t('.destroy'),"/posts/#{@post.id}/destroy",method: :delete) %>
-      </div>
-    </div>
+    <!--post-menu-->
+    <% end %>
   </div>
 </div>
