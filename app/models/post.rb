@@ -6,9 +6,6 @@ class Post < ApplicationRecord
 
     has_many :likes, dependent: :destroy
     belongs_to :user
-    def user
-      return User.find_by(id: self.user_id)
-    end
 
     def likes_count
       return Like.where(post_id: self.id).count
