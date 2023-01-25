@@ -63,6 +63,7 @@
 .user-show {
   text-align: -webkit-center;
   left: 0;
+  margin-top: 33px;
 }
 
 .user-show-container {
@@ -108,7 +109,9 @@
 }
 
 .user-tabs {
-  margin-top: 40px;
+  display: inline-block;
+  margin-top: 18px;
+  margin-bottom: 18px;
   background-color: white;
   overflow: hidden;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
@@ -119,8 +122,8 @@
   float: left;
 }
 
-.user-tabs li.active {
-  border-bottom: 2px solid #3ecdc6;
+.user-tabs li:focus {
+  border-bottom: 2px solid var(--main-color);
 }
 
 .user-tabs li.active a {
@@ -167,4 +170,12 @@
     width: 516px;
     position: absolute;
     left: 32%;
+}
+
+/*user-likes*/
+
+.user-likes-container {
+    position: relative;
+    top: 64px;
+    width: 100%;
 }

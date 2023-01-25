@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :posts, :users
   resource :likes, only: [:create, :destroy]
 
+
   get "login" => "users#login_form", as: :login_form
   post "login" => "users#login", as: :login
   post "logout" => "users#logout", as: :logout

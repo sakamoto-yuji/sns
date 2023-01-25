@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id:params[:id])
+    @likes = Like.where(user_id: @user.id) 
   end
 
   def new
@@ -62,9 +63,9 @@ class UsersController < ApplicationController
   end
   if @user.save
     flash[:notice] = "アカウント情報を編集しました"
-    redirect_to("/users/#{@user.id}")
+    redirect_to(user_path(id: @user.id))
   else
-    render(edit_user_path)
+    render("users/edit")
   end
   end
 
@@ -87,9 +88,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(email: params[:email],
-                         password: params[:password])
-    if @user
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
       redirect_to(posts_path)
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
       @wrong_email = "メールアドレスが間違っています"
       end
 
-      if User.find_by(password: params[:password])
+      if @user.authenticate(params[:password])
       else
       @wrong_password = "パスワードが間違っています"
       end
@@ -117,4 +117,5 @@ class UsersController < ApplicationController
       flash[:notice] = "ログアウトしました"
       redirect_to("/login")
   end
+
 end
