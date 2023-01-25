@@ -101,10 +101,13 @@ class UsersController < ApplicationController
       @wrong_email = "メールアドレスが間違っています"
       end
 
-      if @user.authenticate(params[:password])
-      else
-      @wrong_password = "パスワードが間違っています"
+      if @user 
+        if @user.authenticate(params[:password])
+        else
+          @wrong_password = "パスワードが間違っています"
+        end
       end
+
 
       @email = params[:email]
       @password = params[:password]
