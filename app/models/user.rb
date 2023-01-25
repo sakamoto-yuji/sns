@@ -1,16 +1,15 @@
 class User < ApplicationRecord
  validates :name,{presence:true}
 
- validates :email,{presence:true}
- validates :email,{uniqueness:true}
+ validates :email,{presence:true , uniqueness:true}
 
- validates :password,{presence:true}
- valid_password = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
- validates :password, format: { with:valid_password}
+ VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+ validates :password, presence:true,
+                      length: { minimum: 8, allow_blank:true }, 
+                      format: { with: VALID_PASSWORD_REGEX}, allow_blank:true,
+                      allow_nil:true
 
+ has_secure_password
  has_many :posts, dependent: :destroy
  has_many :likes, dependent: :destroy
-# def posts
-#   return Post.where(user_id: self.id)
-# end
 end
