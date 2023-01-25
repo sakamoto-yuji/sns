@@ -15,6 +15,7 @@ ja:
         user:
          attributes:
            password:
+             too_short: "は8文字以上にしてください"
              blank: "を入力してください"
              invalid: "は半角英数字を両方含めてください"
            email:

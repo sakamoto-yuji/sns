@@ -1,0 +1,23 @@
+.mb-3 {
+  width: fit-content;
+}
+
+.nav-pills .nav-link {
+    background: 0 0;
+    border-radius: 0.25rem;
+    border: 2px solid var(--main-color);
+    margin:3px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: var(--main-color);
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
