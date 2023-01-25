@@ -31,7 +31,7 @@ class PostsController < ApplicationController
      user_id:@current_user.id
    )
    if @post.save
-    flash[:notice] = "ツイートしました"
+    flash[:notice] = "投稿しました"
      redirect_to(posts_path)
     else
      render(new_post_path)
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
    @post = Post.find_by(id:params[:id])
    @post.content = params[:content]
    if @post.save
-    flash[:notice] = "ツイートを編集しました"
+    flash[:notice] = "投稿を編集しました"
      redirect_to(posts_path)
    else
      render(edit_post_path)
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
   def destroy
    @post = Post.find_by(id: params[:id])
    @post.destroy
-   flash[:notice] = "ツイートを削除しました"
+   flash[:notice] = "投稿を削除しました"
    redirect_to(posts_path)
   end
 end
