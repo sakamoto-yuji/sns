@@ -19,6 +19,9 @@ module TWITTER
     config.time_zone = 'Asia/Tokyo'
     config.i18n.default_locale = :ja
     config.active_record.default_timezone = :local
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

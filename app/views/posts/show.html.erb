@@ -1,22 +1,43 @@
-<div class="main posts-show">
-  <div class="post-show-container">
-    <div class="form-heading">投稿詳細</div>
+    <div class="form-heading text-center">投稿詳細</div>
+    <div class="container">
+      <div class="row justify-content-center">
     <%= render "shared/post", post: @post %>
+      </div>
     <!--post-menu-->
+    <div class="row justify-content-center">
     <div class="post-menu"> 
-    <% if @post.user.id == @current_user.id %>
+    <% if @post.user.id == current_user.id %>
       <%= link_to(edit_post_path(id: @post.id)) do %>
-      <button type="button" class="btn btn-outline-info">
+      <button type="button" class="btn btn-primary">
         編集
       </button>
     <% end %>
-    <%= link_to(post_path(id: @post.id), method: :delete) do %>
-      <button type="button" class="btn btn-outline-info">
-        削除
-      </button>
-    <% end %>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      投稿削除
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">投稿削除</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            本当に投稿削除しますか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <%= link_to(post_path(@post.id), {method: "delete"}) do %>
+              <button type="button" class="btn btn-primary">投稿削除</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  <% end %>
     <!--post-menu-->
-    <% end %>
-  </div>
-</div>
+    </div>
