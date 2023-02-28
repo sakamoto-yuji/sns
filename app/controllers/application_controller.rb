@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery 
-  before_action :set_current_user
+  protect_from_forgery with: :exception
+#  before_action :authenticate_user!
 
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def forbid_login_user
-    if @current_user
+    if current_user
       flash[:notice] = "既にログインしています"
       redirect_to("/posts/index")
     end

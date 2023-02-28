@@ -10,17 +10,26 @@
   }
 
 .posts-item {
-  padding: 20px 9px 29px;
+  padding: 11px 11px 0px;
   background-color: white;
   overflow: hidden;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
   box-shadow: 0 2px 6px #c1ced7;
-  width: 408px;
   position: relative;
   height: max-content;
   min-height: 174px;
 
 	  
+}
+
+.post-info {
+    margin-top: 17px;
+    position:absolute;
+    bottom:5px;
+}
+
+.card-body.post-content {
+    padding-top: 7px;
 }
 
 .post-btn-space {
@@ -35,8 +44,6 @@
 .post-user-link {
     padding-bottom: 19px;
     width: fit-content;
-    left: -111px;
-    top: -7px;
     position: relative;
 }
 
@@ -46,18 +53,11 @@
     width: 145px;
 }
 
-.post-user-name {
-    position: absolute;
-    top: 7px;
-    left: -16px;
-    width: max-content;
-}
-
 .posts-index-item a {
   display: inline-block;
   }
 
-.post-left img {
+.posts-item img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -141,15 +141,8 @@
 }
 
 .post-time {
-  left: 4px;
   color: #8899a6;
-  margin-bottom: 10px;
-  width: max-content;
-  margin: 0;
-  display: inherit;
-  position: absolute;
-  bottom: 2px;
-}
+  }
 
 .post-menu {
   width: fit-content;
@@ -214,7 +207,5 @@
 }
 
 .likes-count {
-  position: absolute;
-  bottom: 5px;
-  right: 121px;
+  margin-left: 5px;
 }
