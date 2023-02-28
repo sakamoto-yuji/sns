@@ -1,0 +1,9 @@
+<div class="main user-show">
+  <div class="user-show-container">
+  <%= render "shared/user_show", user: @user %>
+  <% @likes.each do |like| %>
+    <% post = Post.find_by(id: like.post_id) %>
+    <%= render "shared/post", post: post %>
+  <% end %>
+  </div>
+</div>

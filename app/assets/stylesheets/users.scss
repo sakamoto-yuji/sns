@@ -6,7 +6,7 @@
 
 .users-heading {
   font-weight: 300;
-  margin: 60px 0 20px;
+  margin: 92px 0 20px;
   font-size: 48px;
   color: #bcc8d4;
 }
@@ -16,13 +16,13 @@
 }
 
 .users-index-item {
-  padding: 20px 30px;
+  padding: 15px 15px;
   background-color: white;
   overflow: hidden;
   -webkit-box-shadow: 0 2px 6px #c1ced7;
           box-shadow: 0 2px 6px #c1ced7;
   display: table;
-  width: 470px;
+  max-width: 400px;
 }
 
 .user-left img {
@@ -71,6 +71,7 @@
 }
 
 .user {
+  margin-top: 100px;
   margin-bottom: 20px;
 }
 
@@ -85,6 +86,15 @@
      object-fit: cover;
 }
 
+.user-img{
+  width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px #c1ced7;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
 .user h2 {
   font-size: 40px;
   font-weight: 600;
@@ -96,11 +106,7 @@
   margin-bottom: 15px;
 }
 
-.user a {
-  color: #8899a6;
-  text-decoration: underline;
-  font-weight: 200;
-}
+
 
 .user span {
   color: #afb6bf;
@@ -138,7 +144,6 @@
 
 .user-time {
   color: #8899a6;
-  margin-bottom: 10px;
 }
 
 /* users/new, users/edit ================================ */
@@ -170,6 +175,13 @@
     width: 516px;
     position: absolute;
     left: 32%;
+}
+
+input#user_remember_me {
+}
+
+.remember-me label {
+    margin-top: 16px;
 }
 
 /*user-likes*/

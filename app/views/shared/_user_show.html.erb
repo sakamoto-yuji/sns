@@ -1,12 +1,38 @@
-<div class="user">
+<div class="user container text-center">
   <img src="<%= "/user_images/#{user.image_name}"%>">
   <h2><%= user.name %></h2>
   <p><%= user.email %></p>
-  <div class="user-time">
+  <div class="user-time mb-2">
     <%= l user.created_at %>
   </div>
-  <% if user.id == @current_user.id %>
-    <%= link_to("編集", edit_user_path(user.id)) %>
-    <%= link_to("削除",user_path(id: user.id),{method:"delete"}) %>
+  <% if user.id == current_user.id %>
+    <%= link_to(edit_user_path(user.id)) do %>
+      <button type="button" class="btn btn-primary">編集</button>
+    <% end %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      アカウント削除
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">アカウント削除</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            本当にアカウント削除しますか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <%= link_to(user_path(id: user.id), {method: "delete"}) do %>
+              <button type="button" class="btn btn-primary">アカウント削除</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>

@@ -3,7 +3,8 @@
     <h1 class="form-heading"><%= t('.title') %></h1>
   </div>
   <%= form_with(url: post_path(id: @post.id), method: :patch) do %>
-   <div class="form">
+    <form>
+   <div class="form" style="max-width: 500px;">
       <div class="form-body">
        <% @post.errors[:content].each do |messages| %>
          <div class="form-error">
@@ -16,5 +17,6 @@
         <input type="submit" value="保存">
       </div>
      </div>
+    </form>
   <% end %>
 </div>

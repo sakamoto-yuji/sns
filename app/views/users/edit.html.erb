@@ -1,23 +1,24 @@
-<div class="main users-edit">
- <div class="user-edit-container">
-     <div class="form-heading">アカウント情報の編集</div>
-     <%= form_with(url: user_path(id: @user.id), method: "patch",  multipart: true ) do %>
-             <div class="form users-form">
-             <div class="form-body">
-             <% @user.errors.full_messages.each do |messages| %>
-                <div class="form-error">
-                  <%= messages %>
-                </div>
-               <% end %>
-                 <p>アカウント名</p>
-                 <input name="name" value="<%= @user.name %>" >
-                 <p>プロフィール画像</p>
-                 <input name="image" type="file">
-                 <p>メールアドレス</p>
-                 <input name="email" value="<%= @user.email %>" >
-                 <input type="submit" value="保存">
-             </div>
-         </div>
-        <% end %>
-    </div>
+<p class="form-heading text-center text-nowrap">アカウント情報の編集</p>
+<div class="text-center">
+  <%= link_to("パスワード変更", edit_user_registration_path) %>
 </div>
+<%= form_with(url: user_path(id: @user.id), method: "patch",  multipart: true ) do %>
+  <form>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @user.errors.full_messages.each do |messages| %>
+          <div class="form-error">
+            <%= messages %>
+          </div>
+        <% end %>
+        <p>アカウント名</p>
+        <input name="name" value="<%= @user.name %>" >
+        <p>プロフィール画像</p>
+        <input name="image" type="file">
+        <p>メールアドレス</p>
+        <input name="email" value="<%= @user.email %>" >
+        <input type="submit" value="保存">
+      </div>
+    </div>
+  <% end %>
+  </form>
