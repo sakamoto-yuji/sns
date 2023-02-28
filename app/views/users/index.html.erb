@@ -1,20 +1,18 @@
-<div class="main users-index">
-  <div class="users-index-container">
-    <h1 class="users-heading">アカウント一覧</h1>
-    <% @users.each do |user| %>
-      <%= link_to("/users/#{user.id}") do %>
-      <div class="users-index-item">
-        <div class="user-left">
-         <img src="<%= "/user_images/#{user.image_name}"%>">
+<h1 class="users-heading text-center users-index-heading">アカウント一覧</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <% @users.each do |user| %>
+        <div class="card users-index-item">
+          <div class="user-info d-flex">
+            <%= link_to(user_path(user.id)) do %>
+            <img class="user-img" src="<%= "/user_images/#{user.image_name}"%>">
+            <%= user.name %>
+          <% end %>
+          </div>
+          <div class="user-time mt-3">
+            <%= l user.created_at %>
+          </div>
         </div>
-        <div class="user-right">
-          <%= user.name %>
-        </div>
-        <div class="user-time">
-          <%= l user.created_at %>
-       </div>
-      </div>
-    <% end %>
-    <% end %>
+      <% end %>
   </div>
 </div>
