@@ -60,6 +60,7 @@ ja:
               invalid: は英数字を両方含めてください。
             email:
               blank: を入力してください。
+              taken: が既に使用されています。
             name:
               blank: を入力してください。
     attributes:
