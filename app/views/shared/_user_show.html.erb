@@ -1,5 +1,5 @@
 <div class="user container text-center">
-  <img src="<%= "/user_images/#{user.image_name}"%>">
+  <img src="<%= "/user_images/#{user.image_name}?{Time.now.to_i}" %>">
   <h2><%= user.name %></h2>
   <p><%= user.email %></p>
   <div class="user-time mb-2">

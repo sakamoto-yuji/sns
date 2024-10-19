@@ -45,12 +45,16 @@
       aria-labelledby="pills-home-tab"
       >
       <div class="container">
-        <div class="row justify-content-center">
-          <% @user.posts.each do |post| %>
-      <%= render "shared/post", post: post %>
-    <% end %>
+         <% if @user.posts.present? %>
+           <% @posts.each do |post| %>
+            <div class="row justify-content-center">
+             <%= render "shared/post", post: post %>
+            </div>
+           <% end %>
+         <% else %>
+           <p class="text-center">投稿がありません</p>
+         <% end %>  
         </div>
-      </div>
   </div> 
 
   <div
@@ -60,16 +64,15 @@
       aria-labelledby="pills-profile-tab"
       >
       <div class="container">
-        <div class="row justify-content-center">
-          <% if @likes %>
+          <% if @likes.present? %>
       <% @likes.each do |like| %>
         <% post = Post.find_by(id: like.post_id) %>
-        <%= render "shared/post", post: post %>
+         <div class="row justify-content-center">
+           <%= render "shared/post", post: post %>
+         </div>
       <% end %>
     <% else %>
       <p class="text-center">いいねがありません</p>
     <% end %>
-        </div>
       </div>
-  </div>
 </div>

@@ -1,7 +1,7 @@
-<h1 class="users-heading text-center users-index-heading">アカウント一覧</h1>
-  <div class="container">
-    <div class="row justify-content-center">
+<div class="individual-header text-center">アカウント一覧</div> 
+  <div class="content">
       <% @users.each do |user| %>
+        <div class="row justify-content-center">
         <div class="card users-index-item">
           <div class="user-info d-flex">
             <%= link_to(user_path(user.id)) do %>
@@ -13,6 +13,6 @@
             <%= l user.created_at %>
           </div>
         </div>
+        </div>
       <% end %>
-  </div>
 </div>
