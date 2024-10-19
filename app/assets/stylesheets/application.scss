@@ -74,7 +74,10 @@ body {
 }
 
 .content {
-	min-height: 700px;
+	height: calc(100vh - 60px); /* ビューポートの高さからヘッダーの高さを引いた値 */
+  overflow-y: auto; /* 縦方向のスクロールを有効にする */
+  margin-top: 145px;
+  padding-top: 20px;
 }
 
 /* ヘッダー ================================ */
@@ -85,6 +88,19 @@ header {
   background-color: var(--main-color);
   z-index: 10;
   width: 100%;
+}
+
+.individual-header {
+  position: fixed;
+  background-color: white;
+  top: 64px; /* ヘッダーの下に配置 */
+  width: 100%;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px;
+  z-index: 9; /* コンテンツより上に表示するため */
+  font-weight: 300;
+  font-size: 40px;
+  color: #bcc8d4;
 }
 
 .navbar-toggler {

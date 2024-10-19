@@ -2,23 +2,25 @@
 <div class="text-center">
   <%= link_to("パスワード変更", edit_user_registration_path) %>
 </div>
-<%= form_with(url: user_path(id: @user.id), method: "patch",  multipart: true ) do %>
-  <form>
-    <div class="form users-form">
-      <div class="form-body">
-        <% @user.errors.full_messages.each do |messages| %>
-          <div class="form-error">
-            <%= messages %>
-          </div>
-        <% end %>
-        <p>アカウント名</p>
-        <input name="name" value="<%= @user.name %>" >
-        <p>プロフィール画像</p>
-        <input name="image" type="file">
-        <p>メールアドレス</p>
-        <input name="email" value="<%= @user.email %>" >
-        <input type="submit" value="保存">
-      </div>
+<%= form_with(model: @user, url: user_path(id: @user.id), method: "patch", multipart: true) do |f| %>
+  <div class="form users-form">
+    <div class="form-body">
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="form-error">
+          <%= message %>
+        </div>
+      <% end %>
+      
+      <p>アカウント名</p>
+      <%= f.text_field :name, value: @user.name %>
+
+      <p>プロフィール画像</p>
+      <%= f.file_field :image %>
+
+      <p>メールアドレス</p>
+      <%= f.email_field :email, value: @user.email %>
+
+      <%= f.submit "保存" %>
     </div>
-  <% end %>
-  </form>
+  </div>
+<% end %>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <%
-   @main_title = "射出成形.com"
-   @about = "射出成形.comの使い方" 
+   @main_title = "SNS"
+   @about = "about" 
    @posts_index = "投稿一覧" 
    @posts_new = "投稿する"
  %>
@@ -117,9 +117,7 @@
 </div>
 <% end %>
 
-    <div class="container">
-    <%= yield %>
-    </div>
+    <%= yield %> <!-- 各ビューの表示 -->
 
     <div class="footer-space">
 <!--    <footer>

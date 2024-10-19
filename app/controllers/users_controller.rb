@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @posts = @user.posts.order(created_at: :desc)
     @likes = current_user.likes.includes(:post)
   end
 
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: update_params[:id])
+    @user = User.find_by(id: params[:id])
     @user.name = update_params[:name]
     @user.email = update_params[:email]
     if image = update_params[:image]
@@ -88,7 +89,7 @@ class UsersController < ApplicationController
   private
 
   def update_params
-    params.permit(:id, :name, :email, :image)
+    params.require(:user).permit(:name, :email, :image)
   end
 
   def login_form
