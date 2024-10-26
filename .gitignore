@@ -39,3 +39,18 @@ ee https://help.github.com/articles/ignoring-files for more about ignoring files
 app/.DS_Store
 public/user_images/
 shared/config/master.key
+
+# Environment-specific configurations
+config/secrets.yml
+config/credentials.yml.enc
+config/database.yml
+
+# Local dependencies
+vendor/bundle/
+mysql_info
+
+# Unwanted migrations or deleted files
+db/migrate/20230125213821_create_devise_to_users.rb
+RPM-GPG-KEY-mysql-2022
+lib/tasks/unicorn.rake
+

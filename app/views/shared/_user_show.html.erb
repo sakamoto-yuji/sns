@@ -1,14 +1,14 @@
 <div class="user container text-center">
-  <img src="<%= "/user_images/#{user.image_name}?{Time.now.to_i}" %>">
+  <img src="<%= "/user_images/#{user.image}?#{user.updated_at.to_i}" %>">
   <h2><%= user.name %></h2>
   <p><%= user.email %></p>
   <div class="user-time mb-2">
     <%= l user.created_at %>
   </div>
   <% if user.id == current_user.id %>
-    <%= link_to(edit_user_path(user.id)) do %>
-      <button type="button" class="btn btn-primary">編集</button>
-    <% end %>
+
+    <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary" %>
+
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       アカウント削除
@@ -27,9 +27,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-            <%= link_to(user_path(id: user.id), {method: "delete"}) do %>
-              <button type="button" class="btn btn-primary">アカウント削除</button>
-            <% end %>
+            <%= link_to "アカウント削除", user_path(user.id), method: :delete, class: "btn btn-danger" %>          
           </div>
         </div>
       </div>

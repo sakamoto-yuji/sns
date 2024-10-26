@@ -209,3 +209,12 @@
 .likes-count {
   margin-left: 5px;
 }
+
+/* posts/edit ================================ */
+
+.text-area {
+  text-align: left; /* 左寄せでテキストが始まる */
+  padding-left: 0.5em; /* 左側に少し余白を追加 */
+  white-space: pre-wrap; /* 改行と空白を表示 */
+}
+
