@@ -6,7 +6,11 @@ class User < ApplicationRecord
          :lockable, :timeoutable, :trackable # :omniauthable, omniauth_providers:[:twitter]
  validates :name,{presence:true}
 
- validates :email,{presence:true , uniqueness:true}
+ #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+ #validates :email, presence: true,
+ #                  uniqueness: { case_sensitive: false },
+ #                  format: { with: VALID_EMAIL_REGEX },
+ #                  length: { maximum: 255 }
 
  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
  with_options on: create do |create|
@@ -25,3 +29,4 @@ class User < ApplicationRecord
  has_many :posts, dependent: :destroy
  has_many :likes, dependent: :destroy
 end
+

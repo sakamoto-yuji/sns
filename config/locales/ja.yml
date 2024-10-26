@@ -12,18 +12,22 @@ ja:
       save: "保存"
   activerecord:
     errors:
-      models:
-        user:
-         attributes:
-           password:
-             too_short: "は8文字以上にしてください"
-             blank: "を入力してください"
-             invalid: "は半角英数字を両方含めてください"
-           email:
-             blank: "を入力してください"
-             taken: "が既に使用されています"
-           name:
-             blank: "を入力してください"
+      messages:
+        models:
+          user:
+            attributes:
+              password:
+                too_short: "は8文字以上にしてください"
+                blank: "を入力してください"
+                invalid: "は半角英数字を両方含めてください"
+              email:
+                blank: "を入力してください"
+                taken: "が既に使用されています"
+                invalid: "有効なメールアドレスを入力してください"
+              name:
+                blank: "を入力してください"
+        
+            invalid: "入力に誤りがあります"
         post:
           attributes:
             content:
@@ -61,6 +65,7 @@ ja:
             email:
               blank: を入力してください。
               taken: が既に使用されています。
+              
             name:
               blank: を入力してください。
     attributes:

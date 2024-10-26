@@ -5,20 +5,33 @@ class Users::RegistrationsController < Devise::RegistrationsController
    before_action :configure_account_update_params, only: [:update]
 
    def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image_name, :password, :email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image, :password, :email])
   end
 
    def user_image_initial_save(user)
-    if user.image_name
-        user.image_name = "#{user.id}.jpg"
-        image = sign_up_params[:image_name]
-        File.binwrite("public/user_images/#{user.image_name}",image.read)
-        user.save
-      else
-        user.image_name = "default_image.jpg"
-        user.save
-      end
+     image = sign_up_params[:image] # アップロードされた画像を取得
+
+     if image.present?
+       user.image = "#{user.id}.jpg" # ユーザーIDをファイル名に設定
+       image_path = "public/user_images/#{user.image}"
+
+       # ディレクトリの存在確認と作成
+       FileUtils.mkdir_p(File.dirname(image_path))
+
+     begin
+       File.binwrite(image_path, image.read) # 画像を保存
+       user.save
+     rescue => e
+       Rails.logger.error("Image save error: #{e.message}") # エラーロギング
+       user.image = "default_image.jpg" # 保存に失敗した場合のデフォルト画像
+       user.save
+     end
+     else
+       user.image = "default_image.jpg" # 画像がない場合のデフォルト画像
+       user.save
+     end
    end
+
 
   # GET /resource/sign_up
    def new

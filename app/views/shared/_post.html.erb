@@ -1,39 +1,42 @@
-<div class="card posts-item" style="max-width: 400px; min-width: 280px;">
-  <div class="user-info d-flex ">
-    <%= link_to("/users/#{post.user.id}") do %>
-      <img class="user-img" src="<%= "/user_images/#{post.user.image_name}" %> "> 
-      <%= post.user.name %> 
+  <div class="card posts-item" style="max-width: 400px; min-width: 280px;">
+    <div class="user-info d-flex ">
+      <%= link_to user_path(post.user.id) do %>
+        <img class="user-img" src="<%= "/user_images/#{post.user.image}" %> "> 
+        <%= post.user.name %> 
+      <% end %>
+    </div>    
+    <%= link_to post_path(post.id) do %>
+      <div class="card-body">
+        <!--<%= link_to("/posts/#{post.id}") do %>  -->
+        <!-- <%=safe_join(post.content.split("\n"),tag(:br))%>  -->
+        <%= post.content.gsub("\n", "<br>").gsub(" ", "&nbsp;").html_safe %>
+        <!-- <% end %>   -->
+      </div>
     <% end %>
-  </div>    
-  <div class="card-body">
-    <%= link_to("/posts/#{post.id}") do %>
-      <%=safe_join(post.content.split("\n"),tag(:br))%>
-    <% end %>
-  </div>
-  <div class="post-info d-flex align-items-center">
-    <div class="post-time">
-      <%= l post.updated_at %>
+    <div class="post-info d-flex align-items-center">
+      <div class="post-time">
+        <%= l post.updated_at %>
+      </div>
+      <!--like-->
+      <% if Like.find_by(user_id: current_user.id, post_id: post.id) %>
+        <%= link_to(likes_path(post_id: post.id), {method: "delete"}) do %>
+          <i class="fa-solid fa-heart liked-btn"></i>
+        <% end %>
+      <% else %>
+        <%= link_to(likes_path(post_id: post.id), {method: "post"}) do %>
+          <i class="fa-regular fa-heart unliked-btn"></i>
+        <% end %>
+      <% end %>
+  
+      <% if Like.find_by(user_id: current_user.id, post_id: post.id) %>
+        <div class="liked-btn likes-count">
+          <%= post.likes_count %>
+        </div>
+      <% else %>
+        <div class="unliked-btn likes-count">
+          <%= post.likes_count %>
+        </div>
+      <% end %>
+      <!--like-->
     </div>
-    <!--like-->
-    <% if Like.find_by(user_id: current_user.id, post_id: post.id) %>
-      <%= link_to(likes_path(post_id: post.id), {method: "delete"}) do %>
-        <i class="fa-solid fa-heart liked-btn"></i>
-      <% end %>
-    <% else %>
-      <%= link_to(likes_path(post_id: post.id), {method: "post"}) do %>
-        <i class="fa-regular fa-heart unliked-btn"></i>
-      <% end %>
-    <% end %>
-
-    <% if Like.find_by(user_id: current_user.id, post_id: post.id) %>
-      <div class="liked-btn likes-count">
-        <%= post.likes_count %>
-      </div>
-    <% else %>
-      <div class="unliked-btn likes-count">
-        <%= post.likes_count %>
-      </div>
-    <% end %>
-    <!--like-->
   </div>
-</div>

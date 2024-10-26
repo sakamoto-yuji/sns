@@ -1,36 +1,33 @@
 <p class="text-center form-heading">ログイン</p>
-    <div class="form-heading-link text-center">
-      または<%= link_to("新しいアカウントを作成",new_user_registration_path) %>してください
-    </div>
-    <div class="container">
+  <div class="form-heading-link text-center">
+    または<%= link_to("新しいアカウントを作成",new_user_registration_path) %>してください
+  </div>
+  <div class="container">
     <div class="form users-form">
       <div class="form-body">
-<%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+          <!--
+          <% if devise_mapping.rememberable? %>
+          <div class="remember-me container text-end">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+          </div>
+          <% end %>
+          -->
+         <div class="actions">
+           <%= f.submit t "log_in" %>
+         </div>
+       <% end %>
 
-  <form>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+       <!--<%= render "devise/shared/links" %>-->
+    </div>
   </div>
-<!--
-<% if devise_mapping.rememberable? %>
-    <div class="remember-me container text-end">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
--->
-  <div class="actions">
-    <%= f.submit t "log_in" %>
-  </div>
-<% end %>
-
-<!--<%= render "devise/shared/links" %>-->
-      </div>
-    </div>
-    </form>
-    </div>
+</div>

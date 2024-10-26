@@ -5,7 +5,7 @@
         <div class="card users-index-item">
           <div class="user-info d-flex">
             <%= link_to(user_path(user.id)) do %>
-            <img class="user-img" src="<%= "/user_images/#{user.image_name}"%>">
+            <img class="user-img" src="<%= "/user_images/#{user.image}"%>">
             <%= user.name %>
           <% end %>
           </div>
