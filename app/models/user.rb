@@ -7,10 +7,10 @@ class User < ApplicationRecord
  validates :name,{presence:true}
 
  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
- #validates :email, presence: true,
- #                  uniqueness: { case_sensitive: false },
+ validates :email, presence: true,
+                   uniqueness: { case_sensitive: false },
  #                  format: { with: VALID_EMAIL_REGEX },
- #                  length: { maximum: 255 }
+                   length: { maximum: 255 }
 
  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
  with_options on: create do |create|
