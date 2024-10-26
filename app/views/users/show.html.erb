@@ -62,17 +62,18 @@
       id="pills-profile"
       role="tabpanel"
       aria-labelledby="pills-profile-tab"
-      >
-      <div class="container">
-          <% if @likes.present? %>
-      <% @likes.each do |like| %>
+  >
+
+  <div class="container">
+    <% if @user.likes.present? %>
+      <% @user.likes.each do |like| %>
         <% post = Post.find_by(id: like.post_id) %>
-         <div class="row justify-content-center">
-           <%= render "shared/post", post: post %>
-         </div>
+        <div class="row justify-content-center">
+          <%= render "shared/post", post: post %>
+        </div>
       <% end %>
     <% else %>
       <p class="text-center">いいねがありません</p>
     <% end %>
-      </div>
+  </div>
 </div>
