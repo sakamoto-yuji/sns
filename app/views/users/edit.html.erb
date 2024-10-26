@@ -1,19 +1,8 @@
 <p class="form-heading text-center text-nowrap">アカウント情報の編集</p>
 
-<!-- デバッグ用に current_user を表示 -->
-<%= @user.inspect %>
 
 <div class="text-center">
-  <% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-<% if flash[:notice] %>
-  <div class="alert alert-success">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+
 
   <%= link_to("パスワード変更", edit_user_registration_path) %>
 </div>
@@ -26,7 +15,7 @@
         </div>
       <% end %>
       
-      <p>アカウント名</p>
+      <p>ユーザー名</p>
       <%= f.text_field :name, value: @user.name %>
 
       <p>プロフィール画像</p>
