@@ -43,16 +43,25 @@ class PostsController < ApplicationController
   end
 
   def update
-   @post = Post.find_by(id:params[:id])
-   @post.content = params[:content]
-   if @post.save
-    flash[:notice] = "投稿を編集しました"
-     redirect_to(posts_path)
-   else
-     render(edit_post_path)
-   end
+  @post = Post.find_by(id: params[:id])
+  @post.content = params[:content]
+
+  # contentが空でないか確認
+  if @post.content.blank?
+    flash[:alert] = "コンテンツを入力してください"
+    render :edit
+    return
   end
-  
+
+  if @post.save
+    flash[:notice] = "投稿を編集しました"
+    redirect_to posts_path
+  else
+    render :edit
+  end
+end
+
+
   def destroy
    @post = Post.find_by(id: params[:id])
    @post.destroy
