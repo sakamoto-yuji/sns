@@ -7,7 +7,8 @@
   </div>    
   <div class="card-body">
     <%= link_to("/posts/#{post.id}") do %>
-      <%=safe_join(post.content.split("\n"),tag(:br))%>
+     <!-- <%=safe_join(post.content.split("\n"),tag(:br))%> . -->
+     <%= post.content.gsub("\n", "<br>").gsub(" ", "&nbsp;").html_safe %>
     <% end %>
   </div>
   <div class="post-info d-flex align-items-center">
