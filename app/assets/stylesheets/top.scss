@@ -45,7 +45,7 @@
   color: black;
 }
 
-@media (max-width:576px) {
+@media (max-width:576px) {   //スマホサイズ
   .top-main h2 {
     font-size:32px;
 }
@@ -62,7 +62,6 @@
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: contain;
-  background-image: url("top_background_image/seikeiki.jpg");
 
 
 }

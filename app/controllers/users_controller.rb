@@ -24,60 +24,113 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      image_name: params[:image],
-      password: params[:password]
-    ) 
-    if @user.save(context: :registration)
-      session[:user_id] = @user.id
 
-      if @user.image_name
-        @user.image_name = "#{@user.id}.jpg"
-        image = params[:image]
-        File.binwrite("public/user_images/#{@user.image_name}",image.read)
-        @user.save
-      else
-        @user.image_name = "default_image.jpg"
-        @user.save
+def create
+  @user = User.new(user_params)
+
+  if @user.save(context: :registration)
+    session[:user_id] = @user.id
+
+    if @user.image = "#{@user.id}.jpg"
+      image = params[:image]
+
+      begin
+        File.binwrite("public/user_images/#{@user.image}", image.read)
+        @user.update(image: @user.image_name) # ここで更新
+      rescue => e
+        Rails.logger.error("Image upload failed: #{e.message}")
+        @user.image = "default_image.jpg" # エラー時はデフォルト画像に設定
       end
-
-      flash[:notice] = "アカウントを作成しました"
-      redirect_to("/users/#{@user.id}")
     else
-      render(new_user_path)
+      @user.update(image: "default_image.jpg")
+    end
+
+    if @user.save
+
+      # 成功時の処理（例: リダイレクト）
+      redirect_to root_path, notice: 'ユーザーが作成されました。'
+    else
+      # 保存に失敗した場合の処理
+      render :new, alert: 'ユーザーの作成に失敗しました。'
     end
   end
+end
+
+
+
+
+#  def create
+#    @user = User.new(
+#      name: params[:name],
+#      email: params[:email],
+#      image: params[:image],
+#      password: params[:password]
+#    ) 
+#    if @user.save(context: :registration)
+#      session[:user_id] = @user.id
+#
+#      if @user.image
+#        @user.image = "#{@user.id}.jpg"
+#        image = params[:image]
+#        File.binwrite("public/user_images/#{@user.image}",image.read)
+#        @user.save
+#      else
+#        @user.image = "default_image.jpg"
+#        @user.save
+#      end
+#
+#      flash[:notice] = "アカウントを作成しました"
+#      redirect_to("/users/#{@user.id}")
+#    else
+#      render(new_user_path)
+#    end
+#  end
+
 
   def edit
-    @user = User.find_by(id: params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to users_path(current_user)  
+    end
   end
+  
+
 
   def update
-    @user = User.find_by(id: params[:id])
+    Rails.logger.info "Update action called"
+    @user = current_user  # current_userを使用してユーザーを取得
+
+    # パラメータから名前とメールを更新
     @user.name = update_params[:name]
     @user.email = update_params[:email]
+
+    # 画像が提供されている場合、画像を保存
     if image = update_params[:image]
-      File.binwrite("public/user_images/#{@user.id}.jpg",image.read)
-      @user.image_name = "#{@user.id}.jpg"
+      File.binwrite("public/user_images/#{@user.id}.jpg", image.read)
+      @user.image = "#{@user.id}.jpg"
     end
+
+    # ユーザー情報を保存
     if @user.save
       flash[:notice] = "アカウント情報を編集しました"
       redirect_to(user_path(id: @user.id))
     else
+      flash[:alert] = "アカウント情報の更新に失敗しました。"
       render("users/edit")
     end
   end
 
+ 
+
   def destroy
     @user = User.find_by(id: params[:id])
-    if @user.image_name == "default_image.jpg"
+    if @user.image == "default_image.jpg"
 
     else
-      if File.exist?("public/user_images/#{@user.image_name}")
-        File.delete("public/user_images/#{@user.image_name}")
+      if File.exist?("public/user_images/#{@user.image}")
+        File.delete("public/user_images/#{@user.image}")
       end
 
     end
@@ -86,11 +139,7 @@ class UsersController < ApplicationController
     redirect_to(root_path)
   end
 
-  private
 
-  def update_params
-    params.require(:user).permit(:name, :email, :image)
-  end
 
   def login_form
   end
@@ -128,5 +177,16 @@ class UsersController < ApplicationController
     flash[:notice] = "ログアウトしました"
     redirect_to("/login")
   end
+
+  private
+
+    def user_params
+      params.permit(:name, :email, :password, :image)
+    end
+
+    def update_params
+      params.require(:user).permit(:name, :email, :image)
+    end
+
 
 end
