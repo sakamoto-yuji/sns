@@ -1,11 +1,28 @@
-<div class="user container text-center">
-  <img src="<%= "/user_images/#{user.image}?#{user.updated_at.to_i}" %>">
+<div class="user container ">
+  <%= render 'follow_form', user: user if user != current_user  %>
+  <img src="<%= "/user_images/#{user.image}?#{user.updated_at.to_i}" %>" class="user-show-img" alt="Description">
   <h2><%= user.name %></h2>
   <p><%= user.email %></p>
-  <div class="user-time mb-2">
+
+  <div class="d-flex justify-content-center mb-2">
+    <%= link_to following_user_path(user.id, tab: "following"), class: "btn btn-primary me-2" do %>
+      <strong id="following" class="stat">
+        <%= user.following.count %>
+      </strong>
+      フォロー中
+    <% end %>
+    <%= link_to followers_user_path(user.id, tab: "followers"), class: "btn btn-primary" do %>
+      <strong id="followers" class="stat">
+        <%= user.followers.count %>
+      </strong>
+      フォロワー
+    <% end %>
+  </div>
+ 
+  <div class="user-show-created_at mb-2">
     <%= l user.created_at %>
   </div>
-  <% if user.id == current_user.id %>
+  <% if user.current_user?(current_user) %>
 
     <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary" %>
 

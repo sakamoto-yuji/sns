@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.12",
+    "@rails/webpacker": "^5.4.4"
+  }
+}

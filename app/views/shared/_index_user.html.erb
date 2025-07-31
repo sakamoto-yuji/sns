@@ -1,0 +1,19 @@
+<% users.each do |user| %>
+  <div class="row justify-content-center">
+    <div class="card users-index-item">
+      <div class="user-info d-flex">
+        <%= link_to(user_path(user.id)) do %>
+          <img class="user-img" src="<%= "/user_images/#{user.image}"%>">
+          <%= user.name %>
+        <% end %>
+      </div>
+      <%= render 'follow_form', user: user if user != current_user  %>
+      <div class="being-followed mt-3 ">
+        <%= user.following?(current_user) ? "フォローされています" : "" %>
+      </div>
+      <div class="user-time mt-3">
+        <%= l user.created_at %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,27 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!,{only:[:index,:show,:edit,:update]}
+  before_action :authenticate_user!,{only:[:index,
+                                           :show,
+                                           :edit,
+                                           :update,
+                                           :following,
+                                           :followers
+                                          ]}
   #  before_action :forbid_login_user,{only:[:new,:create,:login_form,:login]}
   #  before_action :ensure_correct_user,{only:[:edit,:update,:destroy]}
+
+  def following
+    @title = "フォロー中"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
 
   def ensure_correct_user
     if current_user.id != params[:id].to_i
@@ -59,32 +79,6 @@ end
 
 
 
-#  def create
-#    @user = User.new(
-#      name: params[:name],
-#      email: params[:email],
-#      image: params[:image],
-#      password: params[:password]
-#    ) 
-#    if @user.save(context: :registration)
-#      session[:user_id] = @user.id
-#
-#      if @user.image
-#        @user.image = "#{@user.id}.jpg"
-#        image = params[:image]
-#        File.binwrite("public/user_images/#{@user.image}",image.read)
-#        @user.save
-#      else
-#        @user.image = "default_image.jpg"
-#        @user.save
-#      end
-#
-#      flash[:notice] = "アカウントを作成しました"
-#      redirect_to("/users/#{@user.id}")
-#    else
-#      render(new_user_path)
-#    end
-#  end
 
 
   def edit
@@ -96,8 +90,6 @@ end
     end
   end
   
-
-
   def update
     Rails.logger.info "Update action called"
     @user = current_user  # current_userを使用してユーザーを取得
