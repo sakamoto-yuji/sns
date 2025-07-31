@@ -17,7 +17,7 @@
           aria-controls="pills-home"
           aria-selected="true"
           >
-          投稿
+          投稿   <!--btn_name-->
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -31,7 +31,7 @@
           aria-controls="pills-profile"
           aria-selected="false"
           >
-          いいね！
+          いいね！    <!--btn_name-->
       </button>
     </li>
   </ul>
@@ -44,17 +44,22 @@
       role="tabpanel"
       aria-labelledby="pills-home-tab"
       >
+
+      <!--表示したいもの-------------------------------------------->      
       <div class="container">
-         <% if @user.posts.present? %>
-           <% @posts.each do |post| %>
+        <% if @user.posts.present? %>
+          <% @posts.each do |post| %>
             <div class="row justify-content-center">
-             <%= render "shared/post", post: post %>
+              <%= render "shared/post", post: post %>
             </div>
-           <% end %>
-         <% else %>
-           <p class="text-center">投稿がありません</p>
-         <% end %>  
-        </div>
+          <% end %>
+        <% else %>
+          <p class="text-center">投稿がありません</p>
+        <% end %>  
+      </div>
+      <!--表示したいもの-------------------------------------------->      
+
+
   </div> 
 
   <div
@@ -64,16 +69,20 @@
       aria-labelledby="pills-profile-tab"
   >
 
-  <div class="container">
-    <% if @user.likes.present? %>
-      <% @user.likes.each do |like| %>
-        <% post = Post.find_by(id: like.post_id) %>
-        <div class="row justify-content-center">
-          <%= render "shared/post", post: post %>
-        </div>
+    <!--表示したいもの-------------------------------------------->
+    <div class="container">
+      <% if @user.likes.present? %>
+        <% @user.likes.each do |like| %>
+          <% post = Post.find_by(id: like.post_id) %>
+          <div class="row justify-content-center">
+            <%= render "shared/post", post: post %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center">いいねがありません</p>
       <% end %>
-    <% else %>
-      <p class="text-center">いいねがありません</p>
-    <% end %>
-  </div>
+    </div>
+    <!--表示したいもの-------------------------------------------->      
+
+
 </div>

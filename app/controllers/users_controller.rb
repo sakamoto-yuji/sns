@@ -1,7 +1,28 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!,{only:[:index,:show,:edit,:update]}
+
+  before_action :authenticate_user!,{only:[:index,
+                                           :show,
+                                           :edit,
+                                           :update,
+                                           :following,
+                                           :followers
+                                          ]}
   #  before_action :forbid_login_user,{only:[:new,:create,:login_form,:login]}
   #  before_action :ensure_correct_user,{only:[:edit,:update,:destroy]}
+
+  def following
+    @title = "フォロー中"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
 
   def ensure_correct_user
     if current_user.id != params[:id].to_i
@@ -56,37 +77,6 @@ def create
   end
 end
 
-
-
-
-#  def create
-#    @user = User.new(
-#      name: params[:name],
-#      email: params[:email],
-#      image: params[:image],
-#      password: params[:password]
-#    ) 
-#    if @user.save(context: :registration)
-#      session[:user_id] = @user.id
-#
-#      if @user.image
-#        @user.image = "#{@user.id}.jpg"
-#        image = params[:image]
-#        File.binwrite("public/user_images/#{@user.image}",image.read)
-#        @user.save
-#      else
-#        @user.image = "default_image.jpg"
-#        @user.save
-#      end
-#
-#      flash[:notice] = "アカウントを作成しました"
-#      redirect_to("/users/#{@user.id}")
-#    else
-#      render(new_user_path)
-#    end
-#  end
-
-
   def edit
     begin
       @user = User.find(params[:id])
@@ -96,8 +86,6 @@ end
     end
   end
   
-
-
   def update
     Rails.logger.info "Update action called"
     @user = current_user  # current_userを使用してユーザーを取得
@@ -121,8 +109,30 @@ end
       render("users/edit")
     end
   end
+  
+  def update
+    Rails.logger.info "Update action called"
+    @user = current_user  # current_userを使用してユーザーを取得
 
- 
+    # パラメータから名前とメールを更新
+    @user.name = update_params[:name]
+    @user.email = update_params[:email]
+
+    # 画像が提供されている場合、画像を保存
+    if image = update_params[:image]
+      File.binwrite("public/user_images/#{@user.id}.jpg", image.read)
+      @user.image = "#{@user.id}.jpg"
+    end
+
+    # ユーザー情報を保存
+    if @user.save
+      flash[:notice] = "アカウント情報を編集しました"
+      redirect_to(user_path(id: @user.id))
+    else
+      flash[:alert] = "アカウント情報の更新に失敗しました。"
+      render("users/edit")
+    end
+  end
 
   def destroy
     @user = User.find_by(id: params[:id])

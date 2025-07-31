@@ -6,10 +6,15 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations"
       }
 
-
   root "home#top"
   resources :posts
-  resources :users, :except => :create
+  resources :relationships, only: [:create, :destroy]
+  resources :users, :except => :create do
+    member do
+      get :following, :followers
+    end
+  
+  end
   resource :likes, only: [:create, :destroy]
 
 
