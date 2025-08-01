@@ -1,10 +1,24 @@
 <div class="main top-main">
-    <div class="top-message"> 
-    <h2>トップページ</h2>
-  </div>
+
+  <ul class="list-group mt-3 ms-0" style="width: fit-content;">
+
+    <li class="list-group-item">アクセス情報</li>
+    <li class="list-group-item">IPアドレス: <%= @ip %></li>
+    <% if @location %>
+      <li class="list-group-item">国: <%= @location[:country] %></li>
+      <li class="list-group-item">地域: <%= @location[:region] || "不明" %></li>
+      <li class="list-group-item">市区町村: <%= @location[:city] || "不明" %></li>
+    <% else %>
+      <li class="list-group-item">位置情報を取得できませんでした</li>
+    <% end %>
+
+  </ul>
+
+ 
+
   <div class="github-link">
-  <p>ソースコード→
-  <%= link_to "https://github.com/sakamoto-yuji/syasyutu-seikei.com", target: "_blank" do %>
-   <img src="/github.jpeg"> 
-  <% end %>
+    <p>ソースコード→
+    <%= link_to "https://github.com/sakamoto-yuji/syasyutu-seikei.com", target: "_blank" do %>
+      <img src="/github.jpeg"> 
+    <% end %>
 </div>

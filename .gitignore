@@ -32,18 +32,20 @@ ee https://help.github.com/articles/ignoring-files for more about ignoring files
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+config/master.key
 
 .DS_Store
 *.swp
 app/.DS_Store
-public/user_images/
-shared/config/master.key
+/shared/config/master.key
+/public/user_images/*
+!/public/user_images/.keep
+
 
 # Environment-specific configurations
-config/secrets.yml
-config/credentials.yml.enc
-config/database.yml
+/config/secrets.yml
+/config/credentials.yml.enc
+/config/database.yml
 
 # Local dependencies
 vendor/bundle/

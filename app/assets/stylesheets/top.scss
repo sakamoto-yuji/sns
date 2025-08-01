@@ -1,6 +1,5 @@
 /* top ================================ */
 .top-main {
-  padding: 177px 0 100px;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -51,7 +50,6 @@
 }
 
 .top-main {
-  padding: 98px 0 100px;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -88,3 +86,11 @@
   width: 200px;
   border-radius: 20px;
 }  
+
+.list-group {
+  width: fit-content;
+}
+
+.list-group-item {
+  border: 3px solid black;
+}
