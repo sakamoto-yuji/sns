@@ -6,6 +6,13 @@ class HomeController < ApplicationController
   def top
     @ip = request.remote_ip
     @location = GeoIpService.new(@ip).lookup
+
+    if @location
+      @latitude = @location[:latitude]   # 緯度
+      @longitude = @location[:longitude] # 経度
+    end
+    
+
   end
 
   def about

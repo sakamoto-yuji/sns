@@ -14,7 +14,9 @@ class GeoIpService
     {
       country: result.country.name,
       region: result.subdivisions.most_specific.name,
-      city: result.city.name
+      city: result.city.name,
+      latitude: result.location.latitude,
+      longitude: result.location.longitude
     }
   end
 end

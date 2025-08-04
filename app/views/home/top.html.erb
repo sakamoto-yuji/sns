@@ -14,8 +14,33 @@
 
   </ul>
 
- 
+  <% if @latitude && @longitude %>
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:google_maps, :api_key) %>"></script>
+    <script>
+      function initMap() {
+        var latLng = { lat: <%= @latitude %>, lng: <%= @longitude %> };
 
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: latLng,
+          zoom: 12
+        });
+
+        new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: "アクセス元の位置"
+        });
+      }
+
+      window.onload = initMap;
+    </script>
+  <% end %> 
+
+  
+  
   <div class="github-link">
     <p>ソースコード→
     <%= link_to "https://github.com/sakamoto-yuji/syasyutu-seikei.com", target: "_blank" do %>

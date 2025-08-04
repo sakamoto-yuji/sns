@@ -344,3 +344,26 @@ footer {
   margin: 0;
   font-size: 13px;
 }
+
+/* google_maps-------------------------------------------------------------------*/
+.map-wrapper {
+  position: relative;
+  width: 50%;
+  min-height: 330px;
+  min-width: 345px;
+  padding-bottom: 37.25%; /* 16:9の比率 → 画面幅に対して高さを決める */
+  border: 3px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+/* google_maps-------------------------------------------------------------------*/
+
+
