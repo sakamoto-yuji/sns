@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mt-5">
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="card-title mb-4 text-center">IP計算結果</h1>
+
+          <p class="mb-4 text-center">
+            入力値：<strong><%= @ip_input %></strong> /
+            <strong><%= @subnet_or_cidr %></strong>
+          </p>
+
+        <div class="container mt-5 d-flex justify-content-center">
+          <ul class="list-group">
+            <li class="list-group-item">サブネットマスク: <%= @calculator.subnet_mask %></li>
+            <li class="list-group-item">CIDR値: <%= @calculator.cidr %></li>
+            <li class="list-group-item">ネットワークアドレス: <%= @calculator.network_address %></li>
+            <li class="list-group-item">ブロードキャストアドレス: <%= @calculator.broadcast_address %></li>
+            <li class="list-group-item">最小ホストアドレス: <%= @calculator.first_host %></li>
+            <li class="list-group-item">最大ホストアドレス: <%= @calculator.last_host %></li>
+            <li class="list-group-item">使用可能ホスト数: <%= @calculator.total_hosts - 2 %></li>
+          </ul>
+        </div> 
+          <div class="text-center">
+            <%= link_to "戻る", new_ip_tool_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,27 @@
+<div class="container  custom-margin-top">
+  <h1 class="mb-4 text-center">IPアドレス計算ツール（IPv4)</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <%= form_with url: ip_tools_path, method: :post, local: true do %>
+        <div class="mb-3">
+          <label class="form-label">IPアドレス:</label>
+          <%= text_field_tag :ip, params[:ip], class: "form-control", placeholder: "例: 192.168.1.1" %>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">サブネットマスク または CIDR:</label>
+          <%= text_field_tag :subnet_or_cidr, params[:subnet_or_cidr], class: "form-control", placeholder: "例: 255.255.255.0 または /24" %>
+        </div>
+
+        <div class="d-grid gap-2">
+          <%= submit_tag "計算", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      
+    </div>
+  </div>
+</div>
+
