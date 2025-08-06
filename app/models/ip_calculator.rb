@@ -51,9 +51,15 @@ class IpCalculator
   end
 
   def total_hosts
-    ip_obj.to_range.count
-  end
+    return 0 unless ip_obj.ipv4?
 
+    prefix = ip_obj.prefix.to_i
+    return 0 if prefix >= 31  # /31や/32はホストなし（特殊用途）
+
+    2 ** (32 - prefix) - 2
+  end
+ 
+  
   def validate_ip!
     IPAddr.new(@ip_input)
   rescue IPAddr::InvalidAddressError
