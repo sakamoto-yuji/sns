@@ -41,12 +41,12 @@ class IpCalculator
   end
 
   def first_host
-    return nil if total_hosts <= 2
+    return nil if total_hosts == 0
     (IPAddr.new(network_address).to_i + 1).to_ip
   end
 
   def last_host
-    return nil if total_hosts <= 2
+    return nil if total_hosts == 0
     (IPAddr.new(broadcast_address).to_i - 1).to_ip
   end
 
