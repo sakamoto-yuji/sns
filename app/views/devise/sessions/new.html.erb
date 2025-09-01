@@ -1,6 +1,7 @@
 <p class="text-center form-heading">ログイン</p>
   <div class="form-heading-link text-center">
     または<%= link_to("新しいアカウントを作成",new_user_registration_path) %>してください
+    <%= button_to "ゲストログイン", guest_sign_in_path, method: :post, class: "btn btn-secondary m-2" %>
   </div>
   <div class="container">
     <div class="form users-form">

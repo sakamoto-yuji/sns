@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations"
       }
 
+  # ゲストログイン用ルート
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in", as: :guest_sign_in
+  end
+
   root "home#top"
   resources :posts
   resources :relationships, only: [:create, :destroy]
