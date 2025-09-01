@@ -7,8 +7,8 @@ class UsersController < ApplicationController
                                            :following,
                                            :followers
                                           ]}
-  #  before_action :forbid_login_user,{only:[:new,:create,:login_form,:login]}
-  #  before_action :ensure_correct_user,{only:[:edit,:update,:destroy]}
+
+  before_action :ensure_guest_user, only: [:edit, :update, :destroy]
 
   def following
     @title = "フォロー中"
@@ -189,6 +189,12 @@ end
   end
 
   private
+
+    def ensure_guest_user
+      if current_user.email == 'guest@example.com'
+        redirect_to(request.referer || root_path, alert: 'ゲストユーザーはこの操作を行えません')
+      end
+    end
 
     def user_params
       params.permit(:name, :email, :password, :image)

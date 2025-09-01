@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
 
    def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
-  end
+   end
 
    #GET /resource/sign_in
    def new
@@ -18,7 +18,13 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
-    redirect_to(user_path(id: current_user.id))
+    redirect_to after_sign_in_path_for(resource)
+   end
+
+   def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to after_sign_in_path_for(user), notice: "ゲストユーザーとしてログインしました。"
    end
 
    #DELETE /resource/sign_out
